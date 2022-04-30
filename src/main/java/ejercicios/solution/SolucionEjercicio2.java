@@ -41,8 +41,8 @@ public class SolucionEjercicio2 {
 	
 	@Override
     public String toString() {
-        String cadenaCandidatos = candidatos.stream().map(Candidato::toString).reduce("", (ac, nx) -> String.format("%s%s\n", ac, nx));
-        return String.format("Candidatos Seleccionados:\n%sValoración total: %.1f; Gasto: %.1f; V. media: %.1f", cadenaCandidatos, valoracionTotal, gasto, valoracionMedia);
+        String cadenaCandidatos = candidatos.stream().map(Candidato::toString).reduce("", (ac, nx) -> String.format("%s%s%n", ac, nx));
+        return String.format("Candidatos Seleccionados:%n%sValoraciï¿½n total: %.1f; Gasto: %.1f; V. media: %.1f", cadenaCandidatos, valoracionTotal, gasto, valoracionMedia);
     }
 
 }

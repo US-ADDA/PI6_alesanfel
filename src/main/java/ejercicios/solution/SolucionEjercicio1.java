@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.jgrapht.GraphPath;
 
+import main.java.ejercicios.classes.Fichero;
+import main.java.ejercicios.classes.Memoria;
 import main.java.ejercicios.data.DatosEjercicio1;
 import main.java.ejercicios.edge.AristaEjercicio1;
 import main.java.ejercicios.vertex.VerticeEjercicio1;
@@ -13,7 +15,7 @@ import us.lsi.common.Map2;
 
 public class SolucionEjercicio1 {
 	
-	private final Map<String, List<String>> memorias;
+	private final Map<Memoria, List<Fichero>> memorias;
     private Integer numFicheros;
 	
 	public static SolucionEjercicio1 of(GraphPath<VerticeEjercicio1, AristaEjercicio1> path) {
@@ -31,8 +33,8 @@ public class SolucionEjercicio1 {
         for (int i = 0; i < ls.size(); i++) {
             if (ls.get(i) < DatosEjercicio1.getNumMemoria()) {
                 numFicheros++;
-                String key = DatosEjercicio1.getMemoria(ls.get(i)).id();
-                String value = DatosEjercicio1.getFichero(i).id();
+                Memoria key = DatosEjercicio1.getMemoria(ls.get(i));
+                Fichero value = DatosEjercicio1.getFichero(i);
                 if (memorias.containsKey(key))
                     memorias.get(key).add(value);
                 else
@@ -45,7 +47,7 @@ public class SolucionEjercicio1 {
 	 public String toString() {
 		 String cadenaMemorias = memorias.entrySet().stream()
 				 .map(entry -> entry.getKey() + ": " + entry.getValue())
-				 .reduce("", (ac, nx) -> String.format("%s%s\n", ac, nx));
-		 return String.format("Reparto obtenido:\n%sNúmero de archivos:%s", cadenaMemorias, numFicheros);
+				 .reduce("", (ac, nx) -> String.format("%s%s%n", ac, nx));
+		 return String.format("Reparto obtenido:%n%sNï¿½mero de archivos:%s", cadenaMemorias, numFicheros);
 	    }
 }

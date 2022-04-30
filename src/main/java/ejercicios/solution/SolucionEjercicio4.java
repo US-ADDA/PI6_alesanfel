@@ -43,8 +43,8 @@ public class SolucionEjercicio4 {
 	@Override
     public String toString() {
         var cadenaContenedores = elementosPorContenedor.entrySet().stream()
-                .map(entry -> entry.getKey().id() + ": " + entry.getValue().stream().map(Elemento::id).toList())
-                .reduce("", (ac, nx) -> String.format("%s%s\n", ac, nx));
-        return String.format("Reparto obtenido:\n%sNúmero elementos: %s", cadenaContenedores, elementosPorContenedor.values().stream().mapToLong(List::size).sum());
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
+                .reduce("", (ac, nx) -> String.format("%s%s%n", ac, nx));
+        return String.format("Reparto obtenido:%n%sNï¿½mero elementos: %s", cadenaContenedores, elementosPorContenedor.values().stream().mapToLong(List::size).sum());
     }
 }

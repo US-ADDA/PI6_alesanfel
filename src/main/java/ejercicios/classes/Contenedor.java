@@ -31,4 +31,9 @@ public record Contenedor(String id, Integer capacidad, String tipo) {
         String tipo = infoContenedor[1].split("=")[1];
         return of(id, capacidad, tipo);
     }
+    
+    @Override
+    public String toString() {
+    	return String.format("%s: %s; %s: ", id, capacidad, tipo);
+    }
 }

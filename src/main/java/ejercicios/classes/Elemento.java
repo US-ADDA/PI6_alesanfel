@@ -35,4 +35,9 @@ public record Elemento(String id, Integer tamano, List<String> posiblesContenedo
         List<String> posiblesContenedores = List2.parse(infoElemento[1], ",", String::trim);
         return of(id, tamano, posiblesContenedores);
     }
+    
+    @Override 
+    public String toString() {
+    	return String.format("%s: %s; %s", id, tamano, posiblesContenedores);
+    }
 }

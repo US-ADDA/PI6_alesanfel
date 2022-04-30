@@ -38,6 +38,12 @@ public class SolucionEjercicio3 {
         }
 	}
 	
-	
+	@Override
+    public String toString() {
+        String cadenaProductos = productos.stream()
+                .map(pair -> pair.first().id() + ": " + Math.round(pair.second()) + " unidades")
+                .reduce("", (ac, nx) -> String.format("%s%s%n", ac, nx));
+        return String.format("Productos seleccionados:%n%sBeneficio: %s", cadenaProductos, beneficio);
+    }
 
 }
