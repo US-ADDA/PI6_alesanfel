@@ -34,6 +34,6 @@ public record Memoria(String id, Integer capacidad, Integer tamanoMaximo) {
     
     @Override
     public String toString() {
-    	return String.format("%s: %s; %s:", id, capacidad, tamanoMaximo);
+    	return String.format("%s: %s; %s", id, capacidad, tamanoMaximo);
     }
 }
