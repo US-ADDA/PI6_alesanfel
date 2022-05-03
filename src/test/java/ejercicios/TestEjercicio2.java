@@ -24,7 +24,7 @@ public class TestEjercicio2 {
 				VertexEjercicio2.constraints());
 		
 		algorithms.testAStar(data);
-		//algorithms.testBT(data);
-		//algorithms.testPDR(data);
+		algorithms.testBT(data);
+		algorithms.testPDR(data);
 	}
 }

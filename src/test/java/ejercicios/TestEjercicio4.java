@@ -24,8 +24,8 @@ public class TestEjercicio4 {
 				VertexEjercicio4::weight,
 				VertexEjercicio4.constraint());
 		
-		//algorithms.testAStar(data);
-		//algorithms.testBT(data);
+		algorithms.testAStar(data);
+		algorithms.testBT(data);
 		algorithms.testPDR(data);
 	}
 }

@@ -36,16 +36,6 @@ public class DataEjercicio1 {
     }
 
     /**
-     * Obtiene la capacidad de una memoria.
-     *
-     * @param j el índice correspondiente a la memoria en la lista {@code memorias}.
-     * @return la capacidad de la memoria.
-     */
-    public static Integer getCapacidadMemoria(Integer j) {
-        return memorias.get(j).capacidad();
-    }
-
-    /**
      * Obtiene el tamaño máximo de un fichero que puede ser almacenado en la memoria.
      *
      * @param j el índice correspondiente a la memoria en la lista {@code memorias}.

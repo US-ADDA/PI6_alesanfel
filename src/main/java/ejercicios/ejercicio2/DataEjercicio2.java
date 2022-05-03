@@ -78,17 +78,6 @@ public class DataEjercicio2 {
     }
 
     /**
-     * Devuelve {@code 1} si el candidato tiene la cualidad indicada, en caso contrario, devuelve {@code 0}.
-     *
-     * @param i el índice correspondiente al candidato en la lista {@code candidatos}.
-     * @param k el índice correspondiente a la cualidad en la lista {@code cualidades}.
-     * @return {@code 1} si el candidato contiene la cualidad y sino {@code 0}.
-     */
-    public static Integer tieneCualidad(Integer i, Integer k) {
-        return candidatos.get(i).cualidades().contains(cualidades.get(k)) ? 1 : 0;
-    }
-
-    /**
      * Obtiene una instancia del tipo {@link Candidato}.
      *
      * @param i el índice correspondiente al candidato en la lista {@code candidatos}.
@@ -110,46 +99,19 @@ public class DataEjercicio2 {
 
     // <- MÉTODOS PARA CUALIDADES -> //
 
-    /**
-     * Obtiene la lista de cualidades.
-     *
-     * @return la lista de cualidades.
-     */
-    public static List<String> getCualidades() {
-        return cualidades;
-    }
-    
     public static Set<String> getCualidadesACubrir(List<Integer> candidatos) {
     	Set<String> cualidadesSeleccionadas= Set2.empty();
-    	for (Integer i = 0; i < candidatos.size(); i++)
+    	for (int i = 0; i < candidatos.size(); i++)
     		 cualidadesSeleccionadas.addAll(getCualidadesCandidato(i));
     	Set<String> cualidades2 = Set2.copy(cualidades);
     	cualidades2.removeAll(cualidadesSeleccionadas);
     	return cualidades2;
     }
 
-    /**
-     * Obtiene el número de cualidades que desea la empresa que dispongan los candidatos seleccionados.
-     *
-     * @return el número de cualidades.
-     */
-    public static Integer getNumCualidades() {
-        return cualidades.size();
-    }
-
     // <- MÉTODOS PARA PRESUPUESTO -> //
 
     /**
-     * Obtiene el presupuesto máximo de la empresa.
-     *
-     * @return el presupuesto máximo.
-     */
-    public static Integer getPresupuesto() {
-        return presupuestoMaximo;
-    }
-    
-    /**
-     * Obtiene el presuesto que aún no se ha gastado por el sueldo de los candidatos contratados.
+     * Obtiene el presupuesto que aún no se ha gastado por el sueldo de los candidatos contratados.
      * 
      * @param candidatos los candidatos que han sido contratados.
      * @return el presupuesto restante.

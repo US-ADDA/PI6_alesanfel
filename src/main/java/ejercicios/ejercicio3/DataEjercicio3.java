@@ -150,51 +150,6 @@ public class DataEjercicio3 {
         return componentes.get(j).tiempoManual();
     }
 
-    /**
-     * Obtiene el número de componentes que disponemos.
-     *
-     * @return el número de componentes que disponemos,
-     */
-    public static Integer getNumComponentes() {
-        return componentes.size();
-    }
-
-    // <- MÉTODOS PARA AMBOS -> //
-
-    /**
-     * Obtiene el número necesario para un determinado componente y producto.
-     *
-     * @param i el índice correspondiente al producto en la lista {@code productos}.
-     * @param j el índice correspondiente al componente en la lista {@code componentes}.
-     * @return el número que necesitamos para un determinado componente y producto.
-     */
-    private static Integer getNumComponentesDelProducto(Integer i, Integer j) {
-        var res = productos.get(i).componentes().get(j);
-        return res != null ? res : 0;
-    }
-
-    /**
-     * Obtiene el tiempo necesario para producir un determinado componente de un producto en la fase de producción.
-     *
-     * @param i el índice correspondiente al producto en la lista {@code productos}.
-     * @param j el índice correspondiente al componente en la lista {@code componentes}.
-     * @return el tiempo necesario para producir un determinado componente de un producto en la fase de producción.
-     */
-    public static Integer getTiempoComponenteDelProductoEnProduccion(Integer i, Integer j) {
-        return getNumComponentesDelProducto(i, j) * getTiempoComponenteEnProduccion(j);
-    }
-
-    /**
-     * Obtiene el tiempo necesario para producir un determinado componente de un producto en la fase manual.
-     *
-     * @param i el índice correspondiente al producto en la lista {@code productos}.
-     * @param j el índice correspondiente al componente en la lista {@code componentes}.
-     * @return el tiempo necesario para producir un determinado componente de un producto en la fase manual.
-     */
-    public static Integer getTiempoComponenteDelProductoEnManual(Integer i, Integer j) {
-        return getNumComponentesDelProducto(i, j) * getTiempoComponenteEnManual(j);
-    }
-
     // <- OTROS MÉTODOS -> //
 
     /**
@@ -214,8 +169,6 @@ public class DataEjercicio3 {
     public static Integer getMaxTiempoEnManual() {
         return totalManual;
     }
-    
-    
-    
+
     private DataEjercicio3() {}
 }

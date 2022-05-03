@@ -23,7 +23,7 @@ public class TestEjercicio1 {
 				SolutionEjercicio1::of);
 		
 		algorithms.testAStar(data);
-		// algorithms.testBT(data);
-		// algorithms.testPDR(data);
+		algorithms.testBT(data);
+		algorithms.testPDR(data);
 	}
 }

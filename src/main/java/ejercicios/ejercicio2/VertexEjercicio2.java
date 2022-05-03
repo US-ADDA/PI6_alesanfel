@@ -22,7 +22,7 @@ public record VertexEjercicio2(Integer indice, List<Integer> candidatosSeleccion
 	}
 	
 	public static Predicate<VertexEjercicio2> constraints() {
-		// La solución correcta debe de cubri las cualidades deseadas.
+		// La solución correcta debe de cubrir las cualidades deseadas.
 		return v -> DataEjercicio2.getCualidadesACubrir(v.candidatosSeleccionados).isEmpty();
 	}
 	

@@ -9,8 +9,8 @@ public record Memoria(String id, Integer capacidad, Integer tamanoMaximo) {
      * MÃ©todo de factorÃ­a de la clase {@code Memoria}.
      *
      * @param id           la clave primaria.
-     * @param capacidad    la capacidad mÃ¡xima que puede almacenar la memoria.
-     * @param tamanoMaximo el espacio mÃ¡ximo que puede llegar a ocupar un fichero en una memoria.
+     * @param capacidad    la capacidad máxima que puede almacenar la memoria.
+     * @param tamanoMaximo el espacio máximo que puede llegar a ocupar un fichero en una memoria.
      * @return una instancia del tipo {@code Memoria}.
      */
     public static Memoria of(String id, Integer capacidad, Integer tamanoMaximo) {
@@ -21,7 +21,7 @@ public record Memoria(String id, Integer capacidad, Integer tamanoMaximo) {
      * MÃ©todo para parsear una memoria siguiendo el siguiente criterio:
      * <ul>{@code id}: capacidad={@code capacidad}; tam_max={@code tamanoMaximo};</ul>
      *
-     * @param linea la lÃ­nea que va a ser parseada.
+     * @param linea la línea que va a ser parseada.
      * @return una instancia del tipo {@code Memoria}.
      */
     public static Memoria parse(String linea) {
