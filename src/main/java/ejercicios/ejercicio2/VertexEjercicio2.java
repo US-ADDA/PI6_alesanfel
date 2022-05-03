@@ -1,8 +1,8 @@
 package main.java.ejercicios.ejercicio2;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
-import java.util.stream.IntStream;
 
 import us.lsi.common.List2;
 import us.lsi.graphs.virtual.VirtualVertex;
@@ -13,46 +13,68 @@ public record VertexEjercicio2(Integer indice, List<Integer> candidatosSeleccion
 		return of(0, List2.empty());
 	}
 	
-	public static VertexEjercicio2 copy(VertexEjercicio2 v) {
-		return of(v.indice, v.candidatosSeleccionados);
-	}
-	
 	public static VertexEjercicio2 of(Integer indice, List<Integer> candidatosSeleccionados) {
 		return new VertexEjercicio2(indice, candidatosSeleccionados);
 	}
 	
-	public static VertexEjercicio2 lastVertex() {
-		return of(DataEjercicio2.getNumCandidatos(), IntStream.range(0, DataEjercicio2.getNumCandidatos()).map(x -> 1).boxed().toList());
-	}
-	
 	public static Predicate<VertexEjercicio2> goal() {
-		return V -> V.indice == DataEjercicio2.getNumCandidatos();
+		return v -> Objects.equals(v.indice, DataEjercicio2.getNumCandidatos());
 	}
 	
 	public static Predicate<VertexEjercicio2> constraints() {
-		// TODO
-		return null;
+		return v -> DataEjercicio2.getCualidadesACubrir(v.candidatosSeleccionados).isEmpty();
 	}
 	
-	@Override
-	public Boolean isValid() {
-		return indice >= 0 && indice <= DataEjercicio2.getNumCandidatos();
-	}
+	
 	
 	@Override
 	public List<Integer> actions() {
-		// TODO
-		return null;
+		//System.out.println(indice);
+		List<Integer> la = List2.empty();		
+		if (Objects.equals(indice, DataEjercicio2.getNumCandidatos())) 
+			return List2.empty();
+		// No se pueden contratar candidatos incompatibles.
+		for (var i: candidatosSeleccionados) {
+			//System.out.println(candidatosSeleccionados);
+			//System.out.println(i + " " + indice + " " + DataEjercicio2.esIncompatible(i, indice));
+			if (DataEjercicio2.esIncompatible(i, indice)) {
+				
+				return List.of(0);
+			}	
+		}
+		
+		
+		
+		// No se puede superar el presupuesto
+		
+		
+		//System.out.println(DataEjercicio2.getPresupuestoRestante(nuevosCandidatos));
+		la = DataEjercicio2.getSueldo(indice) <= DataEjercicio2.getPresupuestoRestante(candidatosSeleccionados) ?
+				List.of(0,1):
+				List.of(0);
+		
+		return la;
 	}
+	
+	
 
 	@Override
 	public VertexEjercicio2 neighbor(Integer a) {
-		// TODO
-		return null;
+		List<Integer> auxCandidatosSeleccionados = List2.copy(candidatosSeleccionados);
+		if (a == 1)
+			auxCandidatosSeleccionados.add(indice);
+		/*
+		if (indice == 3) {
+			System.out.println(candidatosSeleccionados);
+			System.out.println(DataEjercicio2.getPresupuestoRestante(candidatosSeleccionados));
+		}
+		*/
+		
+		return VertexEjercicio2.of(indice+1, auxCandidatosSeleccionados);
 	}
 
 	@Override
 	public EdgeEjercicio2 edge(Integer a) {
-		return EdgeEjercicio2.of(this, neighbor(a), a, a*1.0);
+		return EdgeEjercicio2.of(this, neighbor(a), a);
 	}	
 }

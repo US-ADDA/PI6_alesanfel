@@ -13,8 +13,8 @@ public class SolutionEjercicio2 {
 	private final List<Candidato> candidatos;
     private Double valoracionMedia, valoracionTotal, gasto;
 	
-	public static SolutionEjercicio2 of(GraphPath<VertexEjercicio1, EdgeEjercicio1> path) {
-		List<Integer> la = path.getEdgeList().stream().map(EdgeEjercicio1::action).toList();
+	public static SolutionEjercicio2 of(GraphPath<VertexEjercicio2, EdgeEjercicio2> path) {
+		List<Integer> la = path.getEdgeList().stream().map(EdgeEjercicio2::action).toList();
 		return SolutionEjercicio2.of(la);
 	}
 	

@@ -22,7 +22,7 @@ public class DataEjercicio3 {
      *
      * @param path la ruta del fichero.
      */
-    public static void initDatos(String path) {
+    public static void initialData(String path) {
         componentes = new ArrayList<>();
         productos = new ArrayList<>();
         for (var linea : Files2.linesFromFile(path)) {

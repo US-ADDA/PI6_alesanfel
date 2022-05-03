@@ -9,14 +9,14 @@ import test.java.tools.TestAlgorithm;
 
 public class TestEjercicio1 {
 	
-	 private static final String dataPath = "data/PI6Ej1DatosEntrada";
+	private static final String dataPath = "data/PI6Ej1DatosEntrada";
 
 	public static void main(String[] args) {
 
 		String[] data = {dataPath + 1 + ".txt", dataPath + 2 + ".txt"};
 		
 		TestAlgorithm<VertexEjercicio1, EdgeEjercicio1, SolutionEjercicio1> algorithms = TestAlgorithm.of(
-				DataEjercicio1::initDatos, 
+				DataEjercicio1::initialData, 
 				VertexEjercicio1::initialVertex, 
 				VertexEjercicio1.goal(),
 				HeuristicEjercicio1::heuristic, 

@@ -20,7 +20,7 @@ public class DataEjercicio1 {
      *
      * @param path la ruta del fichero.
      */
-    public static void initDatos(String path) {
+    public static void initialData(String path) {
         memorias = List2.empty();
         ficheros = List2.empty();
         for (String linea : Files2.linesFromFile(path)) {

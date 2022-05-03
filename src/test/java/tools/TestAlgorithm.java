@@ -27,27 +27,43 @@ public class TestAlgorithm<V extends VirtualVertex<V, E, Integer>, E extends Sim
 	private Predicate<V> goal;
 	private TriFunction<V,Predicate<V>,V,Double> heuristic;
 	private Function<GraphPath<V,E>,S> solution;
-
-
-	private TestAlgorithm(Consumer<String> initialData, Supplier<V> initialVertex, Predicate<V> goal,
-			TriFunction<V, Predicate<V>, V, Double> heuristic, Function<GraphPath<V, E>, S> solution) {
+	private Predicate<V> constraints;
+	
+	public TestAlgorithm(Consumer<String> initialData, Supplier<V> initialVertex, Predicate<V> goal,
+			TriFunction<V, Predicate<V>, V, Double> heuristic, Function<GraphPath<V, E>, S> solution,
+			Predicate<V> constraints) {
 		this.initialData = initialData;
 		this.initialVertex = initialVertex;
 		this.goal = goal;
 		this.heuristic = heuristic;
 		this.solution = solution;
+		this.constraints = constraints;
 	}
 
 	public static <V extends VirtualVertex<V, E, Integer>, E extends SimpleEdgeAction<V, Integer>, S> 
 			TestAlgorithm<V, E, S> of(Consumer<String> initialData, Supplier<V> initialVertex, Predicate<V> goal,
 			TriFunction<V, Predicate<V>, V, Double> heuristic, Function<GraphPath<V, E>, S> solution) {
-		return new TestAlgorithm<>(initialData, initialVertex, goal, heuristic, solution);
+		return new TestAlgorithm<>(initialData, initialVertex, goal, heuristic, solution, null);
+	}
+	
+	public static <V extends VirtualVertex<V, E, Integer>, E extends SimpleEdgeAction<V, Integer>, S> 
+			TestAlgorithm<V, E, S> of(Consumer<String> initialData, Supplier<V> initialVertex, Predicate<V> goal,
+			TriFunction<V, Predicate<V>, V, Double> heuristic, Function<GraphPath<V, E>, S> solution, Predicate<V> constraints) {
+		return new TestAlgorithm<>(initialData, initialVertex, goal, heuristic, solution, constraints);
+	}
+	
+	public EGraph<V, E> getGraph() {
+		if (constraints == null) {
+			return SimpleVirtualGraph.sum(initialVertex.get(), goal, SimpleEdgeAction::weight);
+		} else {
+			return SimpleVirtualGraph.sum(initialVertex.get(), goal, SimpleEdgeAction::weight, constraints);
+		}
 	}
 	
 	public void testAStar(String ... dataPath) {
 		for (var i = 0; i < dataPath.length; i++) {
 			initialData.accept(dataPath[i]);
-			EGraph<V, E> graph = SimpleVirtualGraph.sum(initialVertex.get(), goal, SimpleEdgeAction::weight);
+			EGraph<V, E> graph = getGraph();
 			AStar<V, E> algorithm = AStar.of(graph, heuristic, AStarType.Max);
 			Optional<GraphPath<V, E>> posibleSolution = algorithm.search();
 			if (posibleSolution.isPresent()) {
@@ -63,7 +79,7 @@ public class TestAlgorithm<V extends VirtualVertex<V, E, Integer>, E extends Sim
 	public void testBT(String ... dataPath) {
 		for (var i = 0; i < dataPath.length; i++) {
 			initialData.accept(dataPath[i]);
-			EGraph<V, E> graph = SimpleVirtualGraph.sum(initialVertex.get(), goal, SimpleEdgeAction::weight);
+			EGraph<V, E> graph = getGraph();
 			BackTracking<V, E, S> algorithm = BackTracking.of(graph, heuristic, solution, BTType.Max);
 			algorithm.search();
 			Optional<S> posibleSolution = algorithm.getSolution();
@@ -81,7 +97,7 @@ public class TestAlgorithm<V extends VirtualVertex<V, E, Integer>, E extends Sim
 	public void testPDR(String ... dataPath) {
 		for (var i = 0; i < dataPath.length; i++) {
 			initialData.accept(dataPath[i]);
-			EGraph<V, E> graph = SimpleVirtualGraph.sum(initialVertex.get(),goal,SimpleEdgeAction::weight);
+			EGraph<V, E> graph = getGraph();
 			DynamicProgrammingReduction<V, E> algorithm = DynamicProgrammingReduction.of(graph, heuristic, PDType.Max);
 			Optional<GraphPath<V, E>> posibleSolution = algorithm.search();
 			

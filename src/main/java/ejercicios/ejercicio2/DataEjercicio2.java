@@ -7,7 +7,6 @@ import us.lsi.common.Set2;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.IntStream;
 
 /**
  * Los datos necesarios para resolver el ejercicio 2.
@@ -23,7 +22,7 @@ public class DataEjercicio2 {
      *
      * @param path la ruta del fichero.
      */
-    public static void initDatos(String path) {
+    public static void initialData(String path) {
         candidatos = List2.empty();
         cualidades = List2.empty();
         for (String linea : Files2.linesFromFile(path)) {
@@ -113,11 +112,18 @@ public class DataEjercicio2 {
     
     public static Set<String> getCualidadesACubrir(List<Integer> candidatos) {
     	Set<String> cualidadesSeleccionadas= Set2.empty();
+    	
     	for (Integer i = 0; i < candidatos.size(); i++) {
-    		if (candidatos.get(i).equals(1)) 
-    			cualidadesSeleccionadas.addAll(getCualidadesCandidato(i));
+    		 cualidadesSeleccionadas.addAll(getCualidadesCandidato(i));
     	}
-    	return Set2.difference(cualidades, cualidadesSeleccionadas);
+    	//System.out.println("---");
+    	//System.out.println(candidatos);
+    	//System.out.println(cualidades);
+    	//System.out.println(cualidadesSeleccionadas);
+    	//System.out.println(Set2.difference(cualidades, cualidadesSeleccionadas));
+    	Set<String> cualidades2 = Set2.copy(cualidades);
+    	cualidades2.removeAll(cualidadesSeleccionadas);
+    	return cualidades2;
     }
 
     /**
@@ -142,9 +148,17 @@ public class DataEjercicio2 {
     
     public static Double getPresupuestoRestante(List<Integer> candidatos) {
     	Double presupuestoRestante = presupuestoMaximo*1.0;
-    	for (Integer i = 0; i < candidatos.size(); i++)
-    		presupuestoRestante -= getSueldo(i)*candidatos.get(i);
+    	for (Integer i: candidatos)
+    		presupuestoRestante -= getSueldo(i);
     	return presupuestoRestante;
+  
+    }
+    
+    public static Double getPresupuestoRestante(List<Integer> candidatos, Integer nuevoCandidato) {
+    	Double presupuestoRestante = presupuestoMaximo*1.0;
+    	for (Integer i: candidatos)
+    		presupuestoRestante -= getSueldo(i);
+    	return presupuestoRestante - getSueldo(nuevoCandidato);
   
     }
     
