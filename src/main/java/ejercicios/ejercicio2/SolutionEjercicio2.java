@@ -3,9 +3,6 @@ package main.java.ejercicios.ejercicio2;
 import java.util.List;
 import org.jgrapht.GraphPath;
 
-import main.java.ejercicios.classes.Candidato;
-import main.java.ejercicios.ejercicio1.EdgeEjercicio1;
-import main.java.ejercicios.ejercicio1.VertexEjercicio1;
 import us.lsi.common.List2;
 
 public class SolutionEjercicio2 {
@@ -41,7 +38,7 @@ public class SolutionEjercicio2 {
 	@Override
     public String toString() {
         String cadenaCandidatos = candidatos.stream().map(Candidato::toString).reduce("", (ac, nx) -> String.format("%s%s%n", ac, nx));
-        return String.format("Candidatos Seleccionados:%n%sValoraci�n total: %.1f; Gasto: %.1f; V. media: %.1f", cadenaCandidatos, valoracionTotal, gasto, valoracionMedia);
+        return String.format("Candidatos Seleccionados:%n%sValoración total: %.1f; Gasto: %.1f; V. media: %.1f", cadenaCandidatos, valoracionTotal, gasto, valoracionMedia);
     }
 
 }

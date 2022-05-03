@@ -20,43 +20,45 @@ import us.lsi.graphs.virtual.SimpleEdgeAction;
 import us.lsi.graphs.virtual.SimpleVirtualGraph;
 import us.lsi.graphs.virtual.VirtualVertex;
 
-public class TestAlgorithm<V extends VirtualVertex<V, E, Integer>, E extends SimpleEdgeAction<V, Integer>, S> {
+public class TestAlgorithmLast<V extends VirtualVertex<V, E, Integer>, E extends SimpleEdgeAction<V, Integer>, S> {
 	
 	private Consumer<String> initialData;
 	private Supplier<V> initialVertex;
 	private Predicate<V> goal;
 	private TriFunction<V,Predicate<V>,V,Double> heuristic;
 	private Function<GraphPath<V,E>,S> solution;
+	private Function<V,Double> vertexWeight;
 	private Predicate<V> constraints;
 	
-	public TestAlgorithm(Consumer<String> initialData, Supplier<V> initialVertex, Predicate<V> goal,
+	public TestAlgorithmLast(Consumer<String> initialData, Supplier<V> initialVertex, Predicate<V> goal,
 			TriFunction<V, Predicate<V>, V, Double> heuristic, Function<GraphPath<V, E>, S> solution,
-			Predicate<V> constraints) {
+			Function<V,Double> vertexWeight, Predicate<V> constraints) {
 		this.initialData = initialData;
 		this.initialVertex = initialVertex;
 		this.goal = goal;
 		this.heuristic = heuristic;
 		this.solution = solution;
+		this.vertexWeight = vertexWeight;
 		this.constraints = constraints;
 	}
 
 	public static <V extends VirtualVertex<V, E, Integer>, E extends SimpleEdgeAction<V, Integer>, S> 
-			TestAlgorithm<V, E, S> of(Consumer<String> initialData, Supplier<V> initialVertex, Predicate<V> goal,
-			TriFunction<V, Predicate<V>, V, Double> heuristic, Function<GraphPath<V, E>, S> solution) {
-		return new TestAlgorithm<>(initialData, initialVertex, goal, heuristic, solution, null);
+			TestAlgorithmLast<V, E, S> of(Consumer<String> initialData, Supplier<V> initialVertex, Predicate<V> goal,
+			TriFunction<V, Predicate<V>, V, Double> heuristic, Function<GraphPath<V, E>, S> solution, Function<V,Double> vertexWeight) {
+		return new TestAlgorithmLast<>(initialData, initialVertex, goal, heuristic, solution, vertexWeight, null);
 	}
 	
 	public static <V extends VirtualVertex<V, E, Integer>, E extends SimpleEdgeAction<V, Integer>, S> 
-			TestAlgorithm<V, E, S> of(Consumer<String> initialData, Supplier<V> initialVertex, Predicate<V> goal,
-			TriFunction<V, Predicate<V>, V, Double> heuristic, Function<GraphPath<V, E>, S> solution, Predicate<V> constraints) {
-		return new TestAlgorithm<>(initialData, initialVertex, goal, heuristic, solution, constraints);
+			TestAlgorithmLast<V, E, S> of(Consumer<String> initialData, Supplier<V> initialVertex, Predicate<V> goal,
+			TriFunction<V, Predicate<V>, V, Double> heuristic, Function<GraphPath<V, E>, S> solution, Function<V,Double> vertexWeight, Predicate<V> constraints) {
+		return new TestAlgorithmLast<>(initialData, initialVertex, goal, heuristic, solution, vertexWeight, constraints);
 	}
 	
 	public EGraph<V, E> getGraph() {
 		if (constraints == null) {
-			return SimpleVirtualGraph.sum(initialVertex.get(), goal, SimpleEdgeAction::weight);
+			return SimpleVirtualGraph.last(initialVertex.get(), goal, vertexWeight);
 		} else {
-			return SimpleVirtualGraph.sum(initialVertex.get(), goal, SimpleEdgeAction::weight, constraints);
+			return SimpleVirtualGraph.last(initialVertex.get(), goal, vertexWeight, constraints);
 		}
 	}
 	

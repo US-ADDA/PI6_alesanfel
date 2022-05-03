@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.jgrapht.GraphPath;
 
-import main.java.ejercicios.classes.Producto;
 import us.lsi.common.List2;
 import us.lsi.common.Pair;
 

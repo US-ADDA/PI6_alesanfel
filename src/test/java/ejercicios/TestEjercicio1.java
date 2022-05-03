@@ -5,7 +5,7 @@ import main.java.ejercicios.ejercicio1.DataEjercicio1;
 import main.java.ejercicios.ejercicio1.HeuristicEjercicio1;
 import main.java.ejercicios.ejercicio1.SolutionEjercicio1;
 import main.java.ejercicios.ejercicio1.VertexEjercicio1;
-import test.java.tools.TestAlgorithm;
+import test.java.tools.TestAlgorithmSum;
 
 public class TestEjercicio1 {
 	
@@ -15,7 +15,7 @@ public class TestEjercicio1 {
 
 		String[] data = {dataPath + 1 + ".txt", dataPath + 2 + ".txt"};
 		
-		TestAlgorithm<VertexEjercicio1, EdgeEjercicio1, SolutionEjercicio1> algorithms = TestAlgorithm.of(
+		TestAlgorithmSum<VertexEjercicio1, EdgeEjercicio1, SolutionEjercicio1> algorithms = TestAlgorithmSum.of(
 				DataEjercicio1::initialData, 
 				VertexEjercicio1::initialVertex, 
 				VertexEjercicio1.goal(),
@@ -23,7 +23,7 @@ public class TestEjercicio1 {
 				SolutionEjercicio1::of);
 		
 		algorithms.testAStar(data);
-		algorithms.testBT(data);
-		algorithms.testPDR(data);
+		// algorithms.testBT(data);
+		// algorithms.testPDR(data);
 	}
 }

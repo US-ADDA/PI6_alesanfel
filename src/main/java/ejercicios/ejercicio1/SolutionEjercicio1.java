@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.jgrapht.GraphPath;
 
-import main.java.ejercicios.classes.Fichero;
-import main.java.ejercicios.classes.Memoria;
 import us.lsi.common.List2;
 import us.lsi.common.Map2;
 
@@ -45,6 +43,6 @@ public class SolutionEjercicio1 {
 		 String cadenaMemorias = memorias.entrySet().stream()
 				 .map(entry -> entry.getKey() + ": " + entry.getValue())
 				 .reduce("", (ac, nx) -> String.format("%s%s%n", ac, nx));
-		 return String.format("Reparto obtenido:%n%sNúmero de archivos:%s", cadenaMemorias, numFicheros);
+		 return String.format("Reparto obtenido:%n%sSe almacenaron %s archivos.", cadenaMemorias, numFicheros);
 	    }
 }

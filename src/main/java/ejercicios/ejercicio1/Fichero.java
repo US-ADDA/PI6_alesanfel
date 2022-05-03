@@ -1,4 +1,4 @@
-package main.java.ejercicios.classes;
+package main.java.ejercicios.ejercicio1;
 
 /**
  * El tipo correspondiente a un fichero que puede ser almacenada en una memoria.
@@ -6,7 +6,7 @@ package main.java.ejercicios.classes;
 public record Fichero(String id, Integer capacidad) {
 
     /**
-     * MÃ©todo de factorÃ­a de la clase {@code Fichero}.
+     * Método de factoría de la clase {@code Fichero}.
      *
      * @param id        la clave primaria
      * @param capacidad la capacidad que ocupa el fichero en una memoria.
@@ -17,10 +17,10 @@ public record Fichero(String id, Integer capacidad) {
     }
 
     /**
-     * MÃ©todo para parsear un fichero siguiendo el siguiente criterio:
+     * Método para parsear un fichero siguiendo el siguiente criterio:
      * <ul>{@code id}: {@code capacidad}</ul>
      *
-     * @param linea la lÃ­nea que va a ser parseada.
+     * @param linea la línea que va a ser parseada.
      * @return una instancia del tipo {@code Fichero}.
      */
     public static Fichero parse(String linea) {

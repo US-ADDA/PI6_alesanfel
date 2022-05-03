@@ -1,7 +1,5 @@
 package main.java.ejercicios.ejercicio1;
 
-import main.java.ejercicios.classes.Fichero;
-import main.java.ejercicios.classes.Memoria;
 import us.lsi.common.Files2;
 import us.lsi.common.List2;
 
@@ -106,4 +104,12 @@ public class DataEjercicio1 {
     public static Integer getNumFichero() {
         return ficheros.size();
     }
+    
+    // <- MÉTODOS PARA AMBOS -> //
+    
+    public static Boolean ficheroEnMemoria(Integer i, Integer j, List<Integer> capacidadRestante) {
+    	return getCapacidadFichero(i) <= getMaxTamanoMemoria(j) && capacidadRestante.get(j) - getCapacidadFichero(i) >= 0;
+    }
+    
+    private DataEjercicio1() {}
 }

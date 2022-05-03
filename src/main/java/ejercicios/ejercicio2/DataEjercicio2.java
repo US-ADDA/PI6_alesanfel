@@ -1,6 +1,5 @@
 package main.java.ejercicios.ejercicio2;
 
-import main.java.ejercicios.classes.Candidato;
 import us.lsi.common.Files2;
 import us.lsi.common.List2;
 import us.lsi.common.Set2;
@@ -56,6 +55,16 @@ public class DataEjercicio2 {
     public static Double getSueldo(Integer i) {
         return candidatos.get(i).sueldo();
     }
+    
+    /**
+     * Obtiene las cualidades de un candidato.
+     * 
+     * @param i el índice correspondiente al candidato en la lista {@code candidatos}.
+     * @return las cualidades de un candidato.
+     */
+    public static List<String> getCualidadesCandidato(Integer i) {
+    	return candidatos.get(i).cualidades();
+    }
 
     /**
      * Devuelve {@code true} si el primer candidato es incompatible con el segundo candidato, en caso contrario, devuelve {@code false}.
@@ -76,7 +85,7 @@ public class DataEjercicio2 {
      * @return {@code 1} si el candidato contiene la cualidad y sino {@code 0}.
      */
     public static Integer tieneCualidad(Integer i, Integer k) {
-        return candidatos.get(i).cualidadesPorCandidato().contains(cualidades.get(k)) ? 1 : 0;
+        return candidatos.get(i).cualidades().contains(cualidades.get(k)) ? 1 : 0;
     }
 
     /**
@@ -112,15 +121,8 @@ public class DataEjercicio2 {
     
     public static Set<String> getCualidadesACubrir(List<Integer> candidatos) {
     	Set<String> cualidadesSeleccionadas= Set2.empty();
-    	
-    	for (Integer i = 0; i < candidatos.size(); i++) {
+    	for (Integer i = 0; i < candidatos.size(); i++)
     		 cualidadesSeleccionadas.addAll(getCualidadesCandidato(i));
-    	}
-    	//System.out.println("---");
-    	//System.out.println(candidatos);
-    	//System.out.println(cualidades);
-    	//System.out.println(cualidadesSeleccionadas);
-    	//System.out.println(Set2.difference(cualidades, cualidadesSeleccionadas));
     	Set<String> cualidades2 = Set2.copy(cualidades);
     	cualidades2.removeAll(cualidadesSeleccionadas);
     	return cualidades2;
@@ -135,7 +137,7 @@ public class DataEjercicio2 {
         return cualidades.size();
     }
 
-    // <- OTRO MÉTODO -> //
+    // <- MÉTODOS PARA PRESUPUESTO -> //
 
     /**
      * Obtiene el presupuesto máximo de la empresa.
@@ -146,23 +148,17 @@ public class DataEjercicio2 {
         return presupuestoMaximo;
     }
     
+    /**
+     * Obtiene el presuesto que aún no se ha gastado por el sueldo de los candidatos contratados.
+     * 
+     * @param candidatos los candidatos que han sido contratados.
+     * @return el presupuesto restante.
+     */
     public static Double getPresupuestoRestante(List<Integer> candidatos) {
-    	Double presupuestoRestante = presupuestoMaximo*1.0;
-    	for (Integer i: candidatos)
-    		presupuestoRestante -= getSueldo(i);
-    	return presupuestoRestante;
+    	return candidatos.stream().mapToDouble(DataEjercicio2::getSueldo)
+    			.reduce(presupuestoMaximo, (ac, nx) -> ac - nx);
   
     }
     
-    public static Double getPresupuestoRestante(List<Integer> candidatos, Integer nuevoCandidato) {
-    	Double presupuestoRestante = presupuestoMaximo*1.0;
-    	for (Integer i: candidatos)
-    		presupuestoRestante -= getSueldo(i);
-    	return presupuestoRestante - getSueldo(nuevoCandidato);
-  
-    }
-    
-    public static List<String> getCualidadesCandidato(Integer i) {
-    	return candidatos.get(i).cualidadesPorCandidato();
-    }
+    private DataEjercicio2() {}
 }

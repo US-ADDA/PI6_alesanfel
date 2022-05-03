@@ -1,4 +1,4 @@
-package main.java.ejercicios.classes;
+package main.java.ejercicios.ejercicio4;
 
 /**
  * El tipo correspondiente a un contenedor el cual permite almacenar elementos.
@@ -34,6 +34,6 @@ public record Contenedor(String id, Integer capacidad, String tipo) {
     
     @Override
     public String toString() {
-    	return String.format("%s: %s; %s: ", id, capacidad, tipo);
+    	return String.format("%s: %s; %s", id, capacidad, tipo);
     }
 }

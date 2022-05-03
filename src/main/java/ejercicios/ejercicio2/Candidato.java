@@ -1,4 +1,4 @@
-package main.java.ejercicios.classes;
+package main.java.ejercicios.ejercicio2;
 
 import us.lsi.common.List2;
 
@@ -7,22 +7,22 @@ import java.util.List;
 /**
  * El tipo correspondiente a los candidatos para un trabajo.
  */
-public record Candidato(String id, List<String> cualidadesPorCandidato,
+public record Candidato(String id, List<String> cualidades,
                         List<String> incompatibilidadesPorCandidato, Double sueldo, Integer valoracion) {
 
     /**
      * Método de factoría de la clase {@code Candidato}.
      *
      * @param id                             la clave primaria.
-     * @param cualidadesPorCandidato         las cualidades que posse el candidato.
+     * @param cualidades			         las cualidades que posse el candidato.
      * @param incompatibilidadesPorCandidato contiene las claves primarias de los candidatos con los cuales es incompatible.
      * @param sueldo                         el sueldo mínimo que va a ganar el candidato.
      * @param valoracion                     la valoración del candidato.
      * @return una instancia del tipo {@code Candidato}.
      */
-    public static Candidato of(String id, List<String> cualidadesPorCandidato,
+    public static Candidato of(String id, List<String> cualidades,
                                List<String> incompatibilidadesPorCandidato, Double sueldo, Integer valoracion) {
-        return new Candidato(id, cualidadesPorCandidato, incompatibilidadesPorCandidato, sueldo, valoracion);
+        return new Candidato(id, cualidades, incompatibilidadesPorCandidato, sueldo, valoracion);
     }
 
     /**
@@ -45,6 +45,6 @@ public record Candidato(String id, List<String> cualidadesPorCandidato,
 
     @Override
     public String toString() {
-        return String.format("%s: %s; %s; %s; %s", id, cualidadesPorCandidato, sueldo, valoracion, incompatibilidadesPorCandidato);
+        return String.format("%s: %s; %s; %s; %s", id, cualidades, sueldo, valoracion, incompatibilidadesPorCandidato);
     }
 }

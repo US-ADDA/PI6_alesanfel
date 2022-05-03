@@ -2,11 +2,19 @@ package main.java.ejercicios.ejercicio4;
 
 import java.util.function.Predicate;
 
-import main.java.ejercicios.ejercicio3.VertexEjercicio3;
-
 public class HeuristicEjercicio4 {
-	public static Double heuristic(VertexEjercicio3 source, Predicate<VertexEjercicio3> goal, VertexEjercicio3 target) {
-		// TODO
-		return 0.;
+	
+	/**
+	 * Obtiene el número de contenedores que ya están llenos..
+	 * 
+	 * @param source el vértice origen.
+	 * @param goal   restricción que indica que no quedan más vértices por analizar.
+	 * @param target el vértice destino.
+	 * @return número de contenedores llenos.
+	 */
+	public static Double heuristic(VertexEjercicio4 source, Predicate<VertexEjercicio4> goal, VertexEjercicio4 target) {
+		return source.weight();
 	}
+	
+	private HeuristicEjercicio4() {}
 }

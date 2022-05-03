@@ -3,10 +3,9 @@ package main.java.ejercicios.ejercicio1;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import main.java.ejercicios.classes.Fichero;
-import main.java.ejercicios.classes.Memoria;
 import us.lsi.common.List2;
 import us.lsi.graphs.virtual.VirtualVertex;
 
@@ -26,28 +25,24 @@ public record VertexEjercicio1(Integer indice, List<Integer> capacidadRestante) 
 	
 	@Override
 	public List<Integer> actions() {
-		if (indice >= DataEjercicio1.getNumFichero()) {
+		// Si estamos en el último fichero, no se puede realizar ninguna acción.
+		if (Objects.equals(indice, DataEjercicio1.getNumFichero()))
 			return List2.empty();
-		}
-			
-		Fichero fichero = DataEjercicio1.getFichero(indice);
-		List<Integer> acciones = List2.of(DataEjercicio1.getNumMemoria());
-		for (var i=0; i < capacidadRestante.size(); i++ ) {
-			var memoria = DataEjercicio1.getMemoria(i);
-			// Debe de haber espacio en esa memoria y no superar el tamaño máximo permitido.
-			if (fichero.capacidad() <= memoria.tamanoMaximo() && capacidadRestante.get(i) - fichero.capacidad() >= 0) {
-				acciones.add(i);
-			}	
-		}
+		List<Integer> acciones = IntStream.range(0, capacidadRestante.size())
+				// Debe de haber espacio en esa memoria y no superar el tamaño máximo permitido.
+				.filter(j -> DataEjercicio1.ficheroEnMemoria(indice, j, capacidadRestante))
+				.boxed().collect(Collectors.toList());
+		// El fichero puede no ser almacenado en una memoria.
+		acciones.add(DataEjercicio1.getNumMemoria());
 		return acciones;
 	}
 
 	@Override
 	public VertexEjercicio1 neighbor(Integer a) {
 		var auxCapacidadRestante = List2.copy(capacidadRestante); 
-		if (!Objects.equals(a, DataEjercicio1.getNumMemoria())) {
+		// Comprobamos que el fichero se ha colocado en una memoria y si lo está, disminuimos la capacidad de la memoria correspondiente.
+		if (!Objects.equals(a, DataEjercicio1.getNumMemoria()))
 			auxCapacidadRestante.set(a, capacidadRestante.get(a) - DataEjercicio1.getCapacidadFichero(indice));
-		}
 		return VertexEjercicio1.of(indice+1, auxCapacidadRestante);
 	}
 

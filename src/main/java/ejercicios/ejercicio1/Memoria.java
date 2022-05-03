@@ -1,4 +1,4 @@
-package main.java.ejercicios.classes;
+package main.java.ejercicios.ejercicio1;
 
 /**
  * El tipo correspondiente a una memoria que permite almacenar ficheros.

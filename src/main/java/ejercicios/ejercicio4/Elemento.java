@@ -1,4 +1,4 @@
-package main.java.ejercicios.classes;
+package main.java.ejercicios.ejercicio4;
 
 import us.lsi.common.List2;
 
@@ -8,6 +8,7 @@ import java.util.List;
  * El tipo correspondiente a un elemento que puede ser almacenado en un contenedor.
  */
 public record Elemento(String id, Integer tamano, List<String> posiblesContenedores) {
+	
     /**
      * Método de factoría de la clase {@code Elemento}.
      *

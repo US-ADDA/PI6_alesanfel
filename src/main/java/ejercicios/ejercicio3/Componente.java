@@ -1,4 +1,4 @@
-package main.java.ejercicios.classes;
+package main.java.ejercicios.ejercicio3;
 
 /**
  * El tipo correspondiente a un componente que, si se ensambla, da lugar a un producto.

@@ -3,11 +3,11 @@ package main.java.ejercicios.ejercicio4;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 
 import org.jgrapht.GraphPath;
 
-import main.java.ejercicios.classes.Contenedor;
-import main.java.ejercicios.classes.Elemento;
 import us.lsi.common.List2;
 
 public class SolutionEjercicio4 {
@@ -42,6 +42,16 @@ public class SolutionEjercicio4 {
         var cadenaContenedores = elementosPorContenedor.entrySet().stream()
                 .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .reduce("", (ac, nx) -> String.format("%s%s%n", ac, nx));
-        return String.format("Reparto obtenido:%n%sN�mero elementos: %s", cadenaContenedores, elementosPorContenedor.values().stream().mapToLong(List::size).sum());
+        return String.format("Reparto obtenido:%n%sNúmero elementos: %s", cadenaContenedores, contenedoresLLenos());
     }
+	
+	public Integer contenedoresLLenos() {
+		Integer c = 0;
+		for (Entry<Contenedor, List<Elemento>> entry: elementosPorContenedor.entrySet()) {
+			Integer consumido = entry.getValue().stream().mapToInt(Elemento::tamano).sum();
+			if (Objects.equals(entry.getKey().capacidad(), consumido))
+				c++;
+		}
+		return c;
+	}
 }
