@@ -165,4 +165,34 @@ public class DataEjercicio3 {
     public static Integer getMaxTiempoEnManual() {
         return totalManual;
     }
+    
+    public static Integer getTiempoTotalManualProducto(Integer i) {
+    	return getProducto(i).componentes().entrySet().stream()
+    			.mapToInt(entry -> getTiempoComponenteEnManual(entry.getKey())*entry.getValue())
+    			.sum();
+    			
+    }
+    
+    public static Integer getTiempoTotalProduccionProducto(Integer i) {
+    	return getProducto(i).componentes().entrySet().stream()
+    			.mapToInt(entry -> getTiempoComponenteEnProduccion(entry.getKey())*entry.getValue())
+    			.sum();
+    }
+    
+    public static Integer getRatioUnidades(Integer i, Integer tiempoProduccionRestante, Integer tiempoManualRestante) {
+		
+    	if (i==1) {
+    		//System.out.println("BBBB");
+    		//System.out.println(DataEjercicio3.getMaxUnidades(i));
+    		//System.out.println(tiempoProduccionRestante + " " + DataEjercicio3.getTiempoTotalProduccionProducto(i));
+    		//System.out.println(tiempoManualRestante + " " + DataEjercicio3.getTiempoTotalManualProducto(i));
+    	}
+    	return Math.min(DataEjercicio3.getMaxUnidades(i), 
+				Math.min(tiempoProduccionRestante/DataEjercicio3.getTiempoTotalProduccionProducto(i), 
+						 tiempoManualRestante/DataEjercicio3.getTiempoTotalManualProducto(i)));		
+	}
+    
+    public static Integer posibleNumProductos(Integer i, Integer tiempoProduccionRestante, Integer tiempoManualRestante) {
+		return DataEjercicio3.getProducto(i).precio()*DataEjercicio3.getRatioUnidades(i, tiempoProduccionRestante, tiempoManualRestante);
+	}
 }
