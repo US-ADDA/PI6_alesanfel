@@ -28,9 +28,9 @@ public record Fichero(String id, Integer capacidad) {
         Integer capacidad = Integer.parseInt(linea.split(":")[1].trim());
         return of(id, capacidad);
     }
-    
+
     @Override
     public String toString() {
-    	return String.format("%s: %s", id, capacidad);
+        return String.format("%s: %s", id, capacidad);
     }
 }

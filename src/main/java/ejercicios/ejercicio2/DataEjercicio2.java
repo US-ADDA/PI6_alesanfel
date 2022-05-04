@@ -55,15 +55,15 @@ public class DataEjercicio2 {
     public static Double getSueldo(Integer i) {
         return candidatos.get(i).sueldo();
     }
-    
+
     /**
      * Obtiene las cualidades de un candidato.
-     * 
+     *
      * @param i el índice correspondiente al candidato en la lista {@code candidatos}.
      * @return las cualidades de un candidato.
      */
     public static List<String> getCualidadesCandidato(Integer i) {
-    	return candidatos.get(i).cualidades();
+        return candidatos.get(i).cualidades();
     }
 
     /**
@@ -100,27 +100,28 @@ public class DataEjercicio2 {
     // <- MÉTODOS PARA CUALIDADES -> //
 
     public static Set<String> getCualidadesACubrir(List<Integer> candidatos) {
-    	Set<String> cualidadesSeleccionadas= Set2.empty();
-    	for (int i = 0; i < candidatos.size(); i++)
-    		 cualidadesSeleccionadas.addAll(getCualidadesCandidato(i));
-    	Set<String> cualidades2 = Set2.copy(cualidades);
-    	cualidades2.removeAll(cualidadesSeleccionadas);
-    	return cualidades2;
+        Set<String> cualidadesSeleccionadas = Set2.empty();
+        for (int i = 0; i < candidatos.size(); i++)
+            cualidadesSeleccionadas.addAll(getCualidadesCandidato(i));
+        Set<String> cualidades2 = Set2.copy(cualidades);
+        cualidades2.removeAll(cualidadesSeleccionadas);
+        return cualidades2;
     }
 
     // <- MÉTODOS PARA PRESUPUESTO -> //
 
     /**
      * Obtiene el presupuesto que aún no se ha gastado por el sueldo de los candidatos contratados.
-     * 
+     *
      * @param candidatos los candidatos que han sido contratados.
      * @return el presupuesto restante.
      */
     public static Double getPresupuestoRestante(List<Integer> candidatos) {
-    	return candidatos.stream().mapToDouble(DataEjercicio2::getSueldo)
-    			.reduce(presupuestoMaximo, (ac, nx) -> ac - nx);
-  
+        return candidatos.stream().mapToDouble(DataEjercicio2::getSueldo)
+                .reduce(presupuestoMaximo, (ac, nx) -> ac - nx);
+
     }
-    
-    private DataEjercicio2() {}
+
+    private DataEjercicio2() {
+    }
 }

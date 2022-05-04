@@ -8,7 +8,7 @@ import java.util.List;
  * El tipo correspondiente a un elemento que puede ser almacenado en un contenedor.
  */
 public record Elemento(String id, Integer tamano, List<String> posiblesContenedores) {
-	
+
     /**
      * Método de factoría de la clase {@code Elemento}.
      *
@@ -36,9 +36,9 @@ public record Elemento(String id, Integer tamano, List<String> posiblesContenedo
         List<String> posiblesContenedores = List2.parse(infoElemento[1], ",", String::trim);
         return of(id, tamano, posiblesContenedores);
     }
-    
-    @Override 
+
+    @Override
     public String toString() {
-    	return String.format("%s: %s; %s", id, tamano, posiblesContenedores);
+        return String.format("%s: %s; %s", id, tamano, posiblesContenedores);
     }
 }

@@ -8,21 +8,21 @@ import us.lsi.common.List2;
 import us.lsi.common.Pair;
 
 public class SolutionEjercicio3 {
-	
-	private final List<Pair<Producto, Double>> productos;
+
+    private final List<Pair<Producto, Double>> productos;
     private Double beneficio;
-	
-	public static SolutionEjercicio3 of(GraphPath<VertexEjercicio3, EdgeEjercicio3> path) {
-		List<Integer> la = path.getEdgeList().stream().map(EdgeEjercicio3::action).toList();
-		return SolutionEjercicio3.of(la);
-	}
-	
-	public static SolutionEjercicio3 of(List<Integer> ls) {
-		return new SolutionEjercicio3(ls);
-	}
-	
-	private SolutionEjercicio3(List<Integer> ls) {
-		productos = List2.empty();
+
+    public static SolutionEjercicio3 of(GraphPath<VertexEjercicio3, EdgeEjercicio3> path) {
+        List<Integer> la = path.getEdgeList().stream().map(EdgeEjercicio3::action).toList();
+        return SolutionEjercicio3.of(la);
+    }
+
+    public static SolutionEjercicio3 of(List<Integer> ls) {
+        return new SolutionEjercicio3(ls);
+    }
+
+    private SolutionEjercicio3(List<Integer> ls) {
+        productos = List2.empty();
         beneficio = 0.;
         for (int i = 0; i < ls.size(); i++) {
             int value = ls.get(i);
@@ -32,9 +32,9 @@ public class SolutionEjercicio3 {
                 beneficio += producto.precio() * value;
             }
         }
-	}
-	
-	@Override
+    }
+
+    @Override
     public String toString() {
         String cadenaProductos = productos.stream()
                 .map(pair -> pair.first().id() + ": " + Math.round(pair.second()) + " unidades")

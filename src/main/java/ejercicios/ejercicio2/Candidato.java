@@ -14,7 +14,7 @@ public record Candidato(String id, List<String> cualidades,
      * Método de factoría de la clase {@code Candidato}.
      *
      * @param id                             la clave primaria.
-     * @param cualidades			         las cualidades que posse el candidato.
+     * @param cualidades                     las cualidades que posse el candidato.
      * @param incompatibilidadesPorCandidato contiene las claves primarias de los candidatos con los cuales es incompatible.
      * @param sueldo                         el sueldo mínimo que va a ganar el candidato.
      * @param valoracion                     la valoración del candidato.

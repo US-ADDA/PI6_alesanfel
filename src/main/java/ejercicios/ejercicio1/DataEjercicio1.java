@@ -30,9 +30,9 @@ public class DataEjercicio1 {
     }
 
     // <- MÉTODOS PARA MEMORIA -> //
-    
+
     public static List<Memoria> getMemorias() {
-    	return memorias;
+        return memorias;
     }
 
     /**
@@ -94,12 +94,13 @@ public class DataEjercicio1 {
     public static Integer getNumFichero() {
         return ficheros.size();
     }
-    
+
     // <- MÉTODOS PARA AMBOS -> //
-    
+
     public static Boolean ficheroEnMemoria(Integer i, Integer j, List<Integer> capacidadRestante) {
-    	return getCapacidadFichero(i) <= getMaxTamanoMemoria(j) && capacidadRestante.get(j) - getCapacidadFichero(i) >= 0;
+        return getCapacidadFichero(i) <= getMaxTamanoMemoria(j) && capacidadRestante.get(j) - getCapacidadFichero(i) >= 0;
     }
-    
-    private DataEjercicio1() {}
+
+    private DataEjercicio1() {
+    }
 }

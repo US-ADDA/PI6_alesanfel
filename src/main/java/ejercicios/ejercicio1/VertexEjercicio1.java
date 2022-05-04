@@ -9,45 +9,46 @@ import java.util.stream.IntStream;
 import us.lsi.common.List2;
 import us.lsi.graphs.virtual.VirtualVertex;
 
-public record VertexEjercicio1(Integer indice, List<Integer> capacidadRestante) implements VirtualVertex<VertexEjercicio1, EdgeEjercicio1, Integer>{
+public record VertexEjercicio1(Integer indice,
+                               List<Integer> capacidadRestante) implements VirtualVertex<VertexEjercicio1, EdgeEjercicio1, Integer> {
 
-	public static VertexEjercicio1 initialVertex() {
-		return of(0, DataEjercicio1.getMemorias().stream().map(Memoria::capacidad).toList());
-	}
-	
-	public static VertexEjercicio1 of(Integer indice, List<Integer> capacidadRestante) {
-		return new VertexEjercicio1(indice, capacidadRestante);
-	}
-	
-	public static Predicate<VertexEjercicio1> goal() {
-		return v -> Objects.equals(v.indice, DataEjercicio1.getNumFichero());
-	}
-	
-	@Override
-	public List<Integer> actions() {
-		// Si estamos en el último fichero, no se puede realizar ninguna acción.
-		if (Objects.equals(indice, DataEjercicio1.getNumFichero()))
-			return List2.empty();
-		List<Integer> acciones = IntStream.range(0, capacidadRestante.size())
-				// Debe de haber espacio en esa memoria y no superar el tamaño máximo permitido.
-				.filter(j -> DataEjercicio1.ficheroEnMemoria(indice, j, capacidadRestante))
-				.boxed().collect(Collectors.toList());
-		// El fichero puede no ser almacenado en una memoria.
-		acciones.add(DataEjercicio1.getNumMemoria());
-		return acciones;
-	}
+    public static VertexEjercicio1 initialVertex() {
+        return of(0, DataEjercicio1.getMemorias().stream().map(Memoria::capacidad).toList());
+    }
 
-	@Override
-	public VertexEjercicio1 neighbor(Integer a) {
-		var auxCapacidadRestante = List2.copy(capacidadRestante); 
-		// Comprobamos que el fichero se ha colocado en una memoria y si lo está, disminuimos la capacidad de la memoria correspondiente.
-		if (!Objects.equals(a, DataEjercicio1.getNumMemoria()))
-			auxCapacidadRestante.set(a, capacidadRestante.get(a) - DataEjercicio1.getCapacidadFichero(indice));
-		return VertexEjercicio1.of(indice+1, auxCapacidadRestante);
-	}
+    public static VertexEjercicio1 of(Integer indice, List<Integer> capacidadRestante) {
+        return new VertexEjercicio1(indice, capacidadRestante);
+    }
 
-	@Override
-	public EdgeEjercicio1 edge(Integer a) {
-		return EdgeEjercicio1.of(this, neighbor(a), a);
-	}
+    public static Predicate<VertexEjercicio1> goal() {
+        return v -> Objects.equals(v.indice, DataEjercicio1.getNumFichero());
+    }
+
+    @Override
+    public List<Integer> actions() {
+        // Si estamos en el último fichero, no se puede realizar ninguna acción.
+        if (Objects.equals(indice, DataEjercicio1.getNumFichero()))
+            return List2.empty();
+        List<Integer> acciones = IntStream.range(0, capacidadRestante.size())
+                // Debe de haber espacio en esa memoria y no superar el tamaño máximo permitido.
+                .filter(j -> DataEjercicio1.ficheroEnMemoria(indice, j, capacidadRestante))
+                .boxed().collect(Collectors.toList());
+        // El fichero puede no ser almacenado en una memoria.
+        acciones.add(DataEjercicio1.getNumMemoria());
+        return acciones;
+    }
+
+    @Override
+    public VertexEjercicio1 neighbor(Integer a) {
+        var auxCapacidadRestante = List2.copy(capacidadRestante);
+        // Comprobamos que el fichero se ha colocado en una memoria y si lo está, disminuimos la capacidad de la memoria correspondiente.
+        if (!Objects.equals(a, DataEjercicio1.getNumMemoria()))
+            auxCapacidadRestante.set(a, capacidadRestante.get(a) - DataEjercicio1.getCapacidadFichero(indice));
+        return VertexEjercicio1.of(indice + 1, auxCapacidadRestante);
+    }
+
+    @Override
+    public EdgeEjercicio1 edge(Integer a) {
+        return EdgeEjercicio1.of(this, neighbor(a), a);
+    }
 }

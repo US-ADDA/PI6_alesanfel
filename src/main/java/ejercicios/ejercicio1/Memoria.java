@@ -6,7 +6,7 @@ package main.java.ejercicios.ejercicio1;
 public record Memoria(String id, Integer capacidad, Integer tamanoMaximo) {
 
     /**
-     * MÃ©todo de factorÃ­a de la clase {@code Memoria}.
+     * Método de factoría de la clase {@code Memoria}.
      *
      * @param id           la clave primaria.
      * @param capacidad    la capacidad máxima que puede almacenar la memoria.
@@ -18,7 +18,7 @@ public record Memoria(String id, Integer capacidad, Integer tamanoMaximo) {
     }
 
     /**
-     * MÃ©todo para parsear una memoria siguiendo el siguiente criterio:
+     * Método para parsear una memoria siguiendo el siguiente criterio:
      * <ul>{@code id}: capacidad={@code capacidad}; tam_max={@code tamanoMaximo};</ul>
      *
      * @param linea la línea que va a ser parseada.
@@ -31,9 +31,9 @@ public record Memoria(String id, Integer capacidad, Integer tamanoMaximo) {
         Integer tamanoMaximo = Integer.parseInt(infoMemoria[1].split("=")[1].trim());
         return of(id, capacidad, tamanoMaximo);
     }
-    
+
     @Override
     public String toString() {
-    	return String.format("%s: %s; %s", id, capacidad, tamanoMaximo);
+        return String.format("%s: %s; %s", id, capacidad, tamanoMaximo);
     }
 }

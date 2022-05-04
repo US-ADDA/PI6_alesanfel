@@ -104,19 +104,19 @@ public class DataEjercicio4 {
     public static Boolean esCompatible(Integer i, Integer j) {
         return elementos.get(i).posiblesContenedores().contains(contenedores.get(j).tipo());
     }
-    
+
     /**
      * Devuelve {@code true} si el elemento puede ser almacenado en el contenedor, en caso contrario, devuelve {@code false}.
      *
-     * @param i 				el índice correspondiente al elemento en la lista {@code elementos}.
-     * @param j 				el índice correspondiente al contenedor en la lista {@code contenedores}.
+     * @param i                 el índice correspondiente al elemento en la lista {@code elementos}.
+     * @param j                 el índice correspondiente al contenedor en la lista {@code contenedores}.
      * @param capacidadRestante la capacidad libre en cada uno de los contenedores.
      * @return {@link Boolean} indicando si el elemento puede ser almacenado en el contenedor.
-     * 
      */
     public static Boolean elementoEnContenedor(Integer i, Integer j, List<Integer> capacidadRestante) {
-    	return capacidadRestante.get(j) >= DataEjercicio4.getTamanoElemento(j) && DataEjercicio4.esCompatible(i, j);
+        return capacidadRestante.get(j) >= DataEjercicio4.getTamanoElemento(j) && DataEjercicio4.esCompatible(i, j);
     }
-    
-    private DataEjercicio4() {}
+
+    private DataEjercicio4() {
+    }
 }

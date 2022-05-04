@@ -56,57 +56,56 @@ public class DataEjercicio3 {
     public static Integer getMaxUnidades(Integer i) {
         return productos.get(i).maxUnidades();
     }
-    
+
     /**
      * Obtiene el tiempo total de elaboración manual necesario para fabricar el producto,
-     * 
+     *
      * @param i el índice correspondiente al producto en la lista {@code productos}
      * @return el tiempo total de elaboración manual.
      */
     public static Integer getTiempoTotalManualProducto(Integer i) {
-    	return getProducto(i).componentes().entrySet().stream()
-    			.mapToInt(entry -> getTiempoComponenteEnManual(entry.getKey())*entry.getValue())
-    			.sum();
-    			
+        return getProducto(i).componentes().entrySet().stream()
+                .mapToInt(entry -> getTiempoComponenteEnManual(entry.getKey()) * entry.getValue())
+                .sum();
     }
-    
+
     /**
      * Obtiene el tiempo total de producción necesario para fabricar el producto,
-     * 
+     *
      * @param i el índice correspondiente al producto en la lista {@code productos}.
      * @return el tiempo total de producción.
      */
     public static Integer getTiempoTotalProduccionProducto(Integer i) {
-    	return getProducto(i).componentes().entrySet().stream()
-    			.mapToInt(entry -> getTiempoComponenteEnProduccion(entry.getKey())*entry.getValue())
-    			.sum();
+        return getProducto(i).componentes().entrySet().stream()
+                .mapToInt(entry -> getTiempoComponenteEnProduccion(entry.getKey()) * entry.getValue())
+                .sum();
     }
-    
+
     /**
      * Obtiene el número de unidades que podemos producir de un producto.
-     * 
-     * @param i            			   el índice correspondiente al producto en la lista {@code productos}.            
+     *
+     * @param i                        el índice correspondiente al producto en la lista {@code productos}.
      * @param tiempoProduccionRestante el tiempo para la fase de producción que aún tenemos.
      * @param tiempoManualRestante     el tiempo para la fase de elaboración manual que aún tenemos.
      * @return número de unidades de un producto.
      */
     public static Integer getRatioUnidades(Integer i, Integer tiempoProduccionRestante, Integer tiempoManualRestante) {
-    	return Math.min(DataEjercicio3.getMaxUnidades(i), 
-				Math.min(tiempoProduccionRestante/DataEjercicio3.getTiempoTotalProduccionProducto(i), 
-						 tiempoManualRestante/DataEjercicio3.getTiempoTotalManualProducto(i)));		
-	}
-    
+        return Math.min(DataEjercicio3.getMaxUnidades(i),
+                Math.min(tiempoProduccionRestante / DataEjercicio3.getTiempoTotalProduccionProducto(i),
+                        tiempoManualRestante / DataEjercicio3.getTiempoTotalManualProducto(i)));
+    }
+
     /**
      * Obtenemos el beneficio que podemos obtener del número de unidades que se pueden fabricar.
-     * 
-     * @param i            			   el índice correspondiente al producto en la lista {@code productos}.            
+     *
+     * @param i                        el índice correspondiente al producto en la lista {@code productos}.
      * @param tiempoProduccionRestante el tiempo para la fase de producción que aún tenemos.
      * @param tiempoManualRestante     el tiempo para la fase de elaboración manual que aún tenemos.
      * @return beneficio de un producto.
      */
     public static Integer beneficioProductos(Integer i, Integer tiempoProduccionRestante, Integer tiempoManualRestante) {
-		return DataEjercicio3.getProducto(i).precio()*DataEjercicio3.getRatioUnidades(i, tiempoProduccionRestante, tiempoManualRestante);
-	}
+        return DataEjercicio3.getProducto(i).precio() * DataEjercicio3.getRatioUnidades(i, tiempoProduccionRestante, tiempoManualRestante);
+    }
 
     /**
      * Obtiene una instancia del tipo {@link Producto}.
@@ -170,5 +169,6 @@ public class DataEjercicio3 {
         return totalManual;
     }
 
-    private DataEjercicio3() {}
+    private DataEjercicio3() {
+    }
 }
