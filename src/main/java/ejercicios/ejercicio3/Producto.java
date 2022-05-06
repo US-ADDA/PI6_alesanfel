@@ -35,14 +35,14 @@ public record Producto(String id, Integer precio, Map<Integer, Integer> componen
         String[] componentesEnProducto = infoProducto[1].split("=")[1].split(",");
         for (String numComponente : componentesEnProducto) {
             String[] data = numComponente.split(":");
-            String auxKey = data[0].replace("\\(C", "");
+            String auxKey = data[0].replaceAll("\\(C", "");
             while (auxKey.charAt(0) == '0')
                 auxKey = auxKey.substring(1);
             int key = Integer.parseInt(auxKey);
-            Integer value = Integer.parseInt(data[1].replace("\\)", ""));
+            Integer value = Integer.parseInt(data[1].replaceAll("\\)", ""));
             map.put(key - 1, value);
         }
-        return Producto.of(linea.split(">")[0].replace(" -", ""), Integer.parseInt(infoProducto[0].split("=")[1].trim()),
+        return Producto.of(linea.split(">")[0].replaceAll(" -", ""), Integer.parseInt(infoProducto[0].split("=")[1].trim()),
                 map, Integer.parseInt(infoProducto[2].split("=")[1].trim()));
     }
 }
