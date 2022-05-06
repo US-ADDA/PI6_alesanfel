@@ -12,16 +12,23 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-
+/**
+ * Definimos el peso del camino como tipo Sum (peso del camino es la suma de pesos asociados a aristas,
+ * vértices y paso por los vértices).
+ *
+ * @param <V> tipo de los vértices
+ * @param <E> tipo de las aristas
+ * @param <S> tipo de la solución devuelta por el algoritmo.
+ */
 public class TestAlgorithmLast<V extends VirtualVertex<V, E, Integer>, E extends SimpleEdgeAction<V, Integer>, S>
         extends TestAlgorithm<V, E, S> {
 
 
     private final Function<V, Double> vertexWeight;
 
-    public TestAlgorithmLast(Consumer<String> initialData, Supplier<V> initialVertex, Predicate<V> goal,
-                             TriFunction<V, Predicate<V>, V, Double> heuristic, Function<GraphPath<V, E>, S> solution,
-                             Function<V, Double> vertexWeight, Predicate<V> constraints) {
+    private TestAlgorithmLast(Consumer<String> initialData, Supplier<V> initialVertex, Predicate<V> goal,
+                              TriFunction<V, Predicate<V>, V, Double> heuristic, Function<GraphPath<V, E>, S> solution,
+                              Function<V, Double> vertexWeight, Predicate<V> constraints) {
         super(initialData, initialVertex, goal, heuristic, solution, constraints);
         this.vertexWeight = vertexWeight;
     }
@@ -40,7 +47,7 @@ public class TestAlgorithmLast<V extends VirtualVertex<V, E, Integer>, E extends
     }
 
     @Override
-    public EGraph<V, E> getGraph() {
+    protected EGraph<V, E> getGraph() {
         return (constraints == null) ?
                 SimpleVirtualGraph.last(initialVertex.get(), goal, vertexWeight) :
                 SimpleVirtualGraph.last(initialVertex.get(), goal, vertexWeight, constraints);

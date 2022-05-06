@@ -1,14 +1,13 @@
 package main.java.ejercicios.ejercicio4;
 
+import org.jgrapht.GraphPath;
+import us.lsi.common.List2;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
-
-import org.jgrapht.GraphPath;
-
-import us.lsi.common.List2;
 
 public class SolutionEjercicio4 {
 

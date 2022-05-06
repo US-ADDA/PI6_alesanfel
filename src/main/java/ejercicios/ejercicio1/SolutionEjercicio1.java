@@ -1,12 +1,11 @@
 package main.java.ejercicios.ejercicio1;
 
-import java.util.List;
-import java.util.Map;
-
 import org.jgrapht.GraphPath;
-
 import us.lsi.common.List2;
 import us.lsi.common.Map2;
+
+import java.util.List;
+import java.util.Map;
 
 public class SolutionEjercicio1 {
 

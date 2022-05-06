@@ -1,12 +1,12 @@
 package main.java.ejercicios.ejercicio3;
 
+import us.lsi.common.List2;
+import us.lsi.graphs.virtual.VirtualVertex;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
-
-import us.lsi.common.List2;
-import us.lsi.graphs.virtual.VirtualVertex;
 
 public record VertexEjercicio3(Integer indice, Integer tiempoProduccionRestante,
                                Integer tiempoManualRestante) implements VirtualVertex<VertexEjercicio3, EdgeEjercicio3, Integer> {

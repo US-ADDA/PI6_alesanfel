@@ -1,10 +1,6 @@
 package test.java.ejercicios;
 
-import main.java.ejercicios.ejercicio3.DataEjercicio3;
-import main.java.ejercicios.ejercicio3.EdgeEjercicio3;
-import main.java.ejercicios.ejercicio3.HeuristicEjercicio3;
-import main.java.ejercicios.ejercicio3.SolutionEjercicio3;
-import main.java.ejercicios.ejercicio3.VertexEjercicio3;
+import main.java.ejercicios.ejercicio3.*;
 import test.java.tools.TestAlgorithmSum;
 
 public class TestEjercicio3 {
@@ -27,4 +23,6 @@ public class TestEjercicio3 {
         algorithms.testPDR(data);
     }
 
+    private TestEjercicio3() {
+    }
 }

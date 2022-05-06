@@ -1,6 +1,5 @@
 package main.java.ejercicios.ejercicio2;
 
-import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 

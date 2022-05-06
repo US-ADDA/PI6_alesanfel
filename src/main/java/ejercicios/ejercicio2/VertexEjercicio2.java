@@ -1,11 +1,11 @@
 package main.java.ejercicios.ejercicio2;
 
+import us.lsi.common.List2;
+import us.lsi.graphs.virtual.VirtualVertex;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
-
-import us.lsi.common.List2;
-import us.lsi.graphs.virtual.VirtualVertex;
 
 public record VertexEjercicio2(Integer indice,
                                List<Integer> candidatosSeleccionados) implements VirtualVertex<VertexEjercicio2, EdgeEjercicio2, Integer> {

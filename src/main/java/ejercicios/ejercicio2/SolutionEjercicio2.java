@@ -1,10 +1,9 @@
 package main.java.ejercicios.ejercicio2;
 
-import java.util.List;
-
 import org.jgrapht.GraphPath;
-
 import us.lsi.common.List2;
+
+import java.util.List;
 
 public class SolutionEjercicio2 {
 

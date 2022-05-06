@@ -1,10 +1,6 @@
 package test.java.ejercicios;
 
-import main.java.ejercicios.ejercicio2.DataEjercicio2;
-import main.java.ejercicios.ejercicio2.EdgeEjercicio2;
-import main.java.ejercicios.ejercicio2.HeuristicEjercicio2;
-import main.java.ejercicios.ejercicio2.SolutionEjercicio2;
-import main.java.ejercicios.ejercicio2.VertexEjercicio2;
+import main.java.ejercicios.ejercicio2.*;
 import test.java.tools.TestAlgorithmSum;
 
 public class TestEjercicio2 {
@@ -26,5 +22,8 @@ public class TestEjercicio2 {
         algorithms.testAStar(data);
         algorithms.testBT(data);
         algorithms.testPDR(data);
+    }
+
+    private TestEjercicio2() {
     }
 }

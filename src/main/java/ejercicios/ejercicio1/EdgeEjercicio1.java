@@ -1,8 +1,8 @@
 package main.java.ejercicios.ejercicio1;
 
-import java.util.Objects;
-
 import us.lsi.graphs.virtual.SimpleEdgeAction;
+
+import java.util.Objects;
 
 public record EdgeEjercicio1(VertexEjercicio1 source, VertexEjercicio1 target, Integer action, Double weight)
 		implements SimpleEdgeAction<VertexEjercicio1, Integer> {

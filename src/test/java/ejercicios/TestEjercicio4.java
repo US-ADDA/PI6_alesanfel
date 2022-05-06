@@ -1,10 +1,6 @@
 package test.java.ejercicios;
 
-import main.java.ejercicios.ejercicio4.DataEjercicio4;
-import main.java.ejercicios.ejercicio4.EdgeEjercicio4;
-import main.java.ejercicios.ejercicio4.HeuristicEjercicio4;
-import main.java.ejercicios.ejercicio4.SolutionEjercicio4;
-import main.java.ejercicios.ejercicio4.VertexEjercicio4;
+import main.java.ejercicios.ejercicio4.*;
 import test.java.tools.TestAlgorithmLast;
 
 public class TestEjercicio4 {
@@ -27,5 +23,8 @@ public class TestEjercicio4 {
         algorithms.testAStar(data);
         algorithms.testBT(data);
         algorithms.testPDR(data);
+    }
+
+    private TestEjercicio4() {
     }
 }
