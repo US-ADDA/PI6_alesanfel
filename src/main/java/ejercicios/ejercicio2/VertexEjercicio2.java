@@ -8,14 +8,15 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 public record VertexEjercicio2(Integer indice,
-                               List<Integer> candidatosSeleccionados) implements VirtualVertex<VertexEjercicio2, EdgeEjercicio2, Integer> {
+                               List<Integer> candidatosSeleccionados,
+                               List<String> cualidadesACubrir) implements VirtualVertex<VertexEjercicio2, EdgeEjercicio2, Integer> {
 
     public static VertexEjercicio2 initialVertex() {
-        return of(0, List2.empty());
+        return of(0, List2.empty(), DataEjercicio2.getCualidadesDeseadas());
     }
 
-    public static VertexEjercicio2 of(Integer indice, List<Integer> candidatosSeleccionados) {
-        return new VertexEjercicio2(indice, candidatosSeleccionados);
+    public static VertexEjercicio2 of(Integer indice, List<Integer> candidatosSeleccionados, List<String> cualidadesACubrir) {
+        return new VertexEjercicio2(indice, candidatosSeleccionados, cualidadesACubrir);
     }
 
     public static Predicate<VertexEjercicio2> goal() {
@@ -24,7 +25,7 @@ public record VertexEjercicio2(Integer indice,
 
     public static Predicate<VertexEjercicio2> constraints() {
         // La solución correcta debe de cubrir las cualidades deseadas.
-        return v -> DataEjercicio2.getCualidadesACubrir(v.candidatosSeleccionados).isEmpty();
+        return v -> v.cualidadesACubrir.isEmpty();
     }
 
     @Override
@@ -46,10 +47,14 @@ public record VertexEjercicio2(Integer indice,
     @Override
     public VertexEjercicio2 neighbor(Integer a) {
         List<Integer> auxCandidatosSeleccionados = List2.copy(candidatosSeleccionados);
+        List<String> auxCualidadesACubrir = List2.copy(cualidadesACubrir);
         // Comprobamos que el candidato ha sido contratado.
-        if (a == 1)
+        if (a == 1) {
             auxCandidatosSeleccionados.add(indice);
-        return VertexEjercicio2.of(indice + 1, auxCandidatosSeleccionados);
+            auxCualidadesACubrir.removeAll(DataEjercicio2.getCualidadesCandidato(indice));
+        }
+
+        return VertexEjercicio2.of(indice + 1, auxCandidatosSeleccionados, auxCualidadesACubrir);
     }
 
     @Override

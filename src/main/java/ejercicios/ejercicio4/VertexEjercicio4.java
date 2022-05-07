@@ -58,7 +58,7 @@ public record VertexEjercicio4(Integer indice,
     @Override
     public VertexEjercicio4 neighbor(Integer a) {
         List<Integer> auxCapacidadRestante = List2.copy(capacidadRestante);
-        // Comprobamos que el elemento se ha colocado en un contenedor y si lo está, disminuimos la capacidad del contenedor correspondiente..
+        // Comprobamos que el elemento se ha colocado en un contenedor y si lo está, disminuimos la capacidad del contenedor correspondiente.
         if (!Objects.equals(a, DataEjercicio4.getNumContenedores()))
             auxCapacidadRestante.set(a, capacidadRestante.get(a) - DataEjercicio4.getTamanoElemento(indice));
         return of(indice + 1, auxCapacidadRestante);

@@ -40,5 +40,4 @@ public class SolutionEjercicio3 {
                 .reduce("", (ac, nx) -> String.format("%s%s%n", ac, nx));
         return String.format("Productos seleccionados:%n%sBeneficio: %s", cadenaProductos, beneficio);
     }
-
 }

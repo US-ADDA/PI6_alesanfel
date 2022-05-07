@@ -2,10 +2,8 @@ package main.java.ejercicios.ejercicio2;
 
 import us.lsi.common.Files2;
 import us.lsi.common.List2;
-import us.lsi.common.Set2;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Los datos necesarios para resolver el ejercicio 2.
@@ -99,14 +97,15 @@ public class DataEjercicio2 {
 
     // <- MÉTODOS PARA CUALIDADES -> //
 
-    public static Set<String> getCualidadesACubrir(List<Integer> candidatos) {
-        Set<String> cualidadesSeleccionadas = Set2.empty();
-        for (int i = 0; i < candidatos.size(); i++)
-            cualidadesSeleccionadas.addAll(getCualidadesCandidato(i));
-        Set<String> cualidades2 = Set2.copy(cualidades);
-        cualidades2.removeAll(cualidadesSeleccionadas);
-        return cualidades2;
+    /**
+     * Obtiene las cualidades que se desean que tengan los empleados.
+     *
+     * @return las cualidades deseadas por la empresa.
+     */
+    public static List<String> getCualidadesDeseadas() {
+        return cualidades;
     }
+
 
     // <- MÉTODOS PARA PRESUPUESTO -> //
 
