@@ -15,8 +15,8 @@ public class HeuristicEjercicio3 {
      * @return el beneficio de los productos de los p`roductos que aún no se han analizado.
      */
     public static Double heuristic(VertexEjercicio3 source, Predicate<VertexEjercicio3> goal, VertexEjercicio3 target) {
-        return (Objects.equals(source.indice(), DataEjercicio3.getNumProductos())) ? 0. :
-                IntStream.range(source.indice(), DataEjercicio3.getNumProductos()).boxed()
+        return (Objects.equals(source.id(), DataEjercicio3.getNumProductos())) ? 0. :
+                IntStream.range(source.id(), DataEjercicio3.getNumProductos()).boxed()
                         .mapToDouble(i -> DataEjercicio3.beneficioProductos(i, source.tiempoProduccionRestante(), source.tiempoManualRestante()))
                         .sum();
     }

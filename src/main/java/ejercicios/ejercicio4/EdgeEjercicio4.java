@@ -2,8 +2,6 @@ package main.java.ejercicios.ejercicio4;
 
 import us.lsi.graphs.virtual.SimpleEdgeAction;
 
-import java.util.Objects;
-
 public record EdgeEjercicio4(VertexEjercicio4 source, VertexEjercicio4 target, Integer action, Double weight)
         implements SimpleEdgeAction<VertexEjercicio4, Integer> {
 
@@ -16,8 +14,11 @@ public record EdgeEjercicio4(VertexEjercicio4 source, VertexEjercicio4 target, I
      * @return una instancia del tipo {@code EdgeEjercicio}.
      */
     public static EdgeEjercicio4 of(VertexEjercicio4 source, VertexEjercicio4 target, Integer action) {
-        // Si el elemento se encuentra en un contenedor 1, en caso contrario 0.
-        Double weight = Objects.equals(action, DataEjercicio4.getNumContenedores()) ? 0. : 1.;
+        // Si hemos logrado llenar un contenedor, es el camino correcto.
+        Integer cantidadLlenosSource=DataEjercicio4.getNumeroContenedoresLLenos(source.capacidadRestante());
+        Integer cantidadLlenosTarget=DataEjercicio4.getNumeroContenedoresLLenos(target.capacidadRestante());
+
+        double weight=(cantidadLlenosTarget>cantidadLlenosSource) ? 1. : 0.;
         return new EdgeEjercicio4(source, target, action, weight);
     }
 }

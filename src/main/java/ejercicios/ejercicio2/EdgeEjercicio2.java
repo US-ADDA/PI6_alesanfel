@@ -15,7 +15,7 @@ public record EdgeEjercicio2(VertexEjercicio2 source, VertexEjercicio2 target, I
      */
     public static EdgeEjercicio2 of(VertexEjercicio2 source, VertexEjercicio2 target, Integer action) {
         // Contamos la valoración si y solo si el empleado ha sido contratado (entre 0 y 5).
-        Double weight = action * DataEjercicio2.getValoracion(source.indice()) * 1.0;
+        Double weight = action * DataEjercicio2.getValoracion(source.id()) * 1.0;
         return new EdgeEjercicio2(source, target, action, weight);
     }
 }

@@ -2,6 +2,7 @@ package test.java.ejercicios;
 
 import main.java.ejercicios.ejercicio4.*;
 import test.java.tools.TestAlgorithmLast;
+import test.java.tools.TestAlgorithmSum;
 
 public class TestEjercicio4 {
 
@@ -11,14 +12,12 @@ public class TestEjercicio4 {
 
         String[] data = {DATA_PATH + 1 + ".txt", DATA_PATH + 2 + ".txt"};
 
-        TestAlgorithmLast<VertexEjercicio4, EdgeEjercicio4, SolutionEjercicio4> algorithms = TestAlgorithmLast.of(
+        TestAlgorithmSum<VertexEjercicio4, EdgeEjercicio4, SolutionEjercicio4> algorithms = TestAlgorithmSum.of(
                 DataEjercicio4::initialData,
                 VertexEjercicio4::initialVertex,
                 VertexEjercicio4.goal(),
                 HeuristicEjercicio4::heuristic,
-                SolutionEjercicio4::of,
-                VertexEjercicio4::weight,
-                VertexEjercicio4.constraint());
+                SolutionEjercicio4::of);
 
         algorithms.testAStar(data);
         algorithms.testBT(data);

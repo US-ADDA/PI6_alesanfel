@@ -13,7 +13,7 @@ public class HeuristicEjercicio1 {
      * @return un valor entre 0. y el número de ficheros.
      */
     public static Double heuristic(VertexEjercicio1 source, Predicate<VertexEjercicio1> goal, VertexEjercicio1 target) {
-        return (DataEjercicio1.getNumFichero() - source.indice()) * 1.0;
+        return (DataEjercicio1.getNumFichero() - source.id()) * 1.0;
     }
 
     private HeuristicEjercicio1() {

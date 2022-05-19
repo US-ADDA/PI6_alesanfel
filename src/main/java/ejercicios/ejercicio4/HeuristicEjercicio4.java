@@ -13,7 +13,9 @@ public class HeuristicEjercicio4 {
      * @return número de contenedores llenos.
      */
     public static Double heuristic(VertexEjercicio4 source, Predicate<VertexEjercicio4> goal, VertexEjercicio4 target) {
-        return source.weight();
+        if(source.id()==DataEjercicio4.elementos.size()) return 0.;
+        return Math.min(DataEjercicio4.contenedores.size()-DataEjercicio4.getNumeroContenedoresLLenos(source.capacidadRestante()),
+                DataEjercicio4.elementos.size()-source.id())*1.0;
     }
 
     private HeuristicEjercicio4() {

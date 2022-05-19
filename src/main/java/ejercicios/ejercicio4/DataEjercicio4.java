@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class DataEjercicio4 {
 
-    private static List<Elemento> elementos;
-    private static List<Contenedor> contenedores;
+    static List<Elemento> elementos;
+    static List<Contenedor> contenedores;
 
     /**
      * Carga los datos de un fichero.
@@ -83,6 +83,16 @@ public class DataEjercicio4 {
     }
 
     /**
+     * OObtiene el número de contenedores que no pueden contener ningún elemento más.
+     *
+     * @param capacidadRestante la capacidad restante de cada uno de los contenedores.
+     * @return el número de contenedores llenos.
+     */
+    public static Integer getNumeroContenedoresLLenos(List<Integer> capacidadRestante) {
+        return Math.toIntExact(capacidadRestante.stream().filter(contenedor -> contenedor == 0).count());
+    }
+
+    /**
      * Obtiene el número de contenedores que disponemos.
      *
      * @return el número de contenedores que disponemos.
@@ -114,7 +124,7 @@ public class DataEjercicio4 {
      * @return {@link Boolean} indicando si el elemento puede ser almacenado en el contenedor.
      */
     public static Boolean elementoEnContenedor(Integer i, Integer j, List<Integer> capacidadRestante) {
-        return capacidadRestante.get(j) >= DataEjercicio4.getTamanoElemento(j) && DataEjercicio4.esCompatible(i, j);
+        return capacidadRestante.get(j) >= DataEjercicio4.getTamanoElemento(i) && DataEjercicio4.esCompatible(i, j);
     }
 
     private DataEjercicio4() {

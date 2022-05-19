@@ -19,8 +19,8 @@ public class TestEjercicio3 {
                 SolutionEjercicio3::of);
 
         algorithms.testAStar(data);
-        algorithms.testBT(data);
-        algorithms.testPDR(data);
+        //algorithms.testBT(data);
+        //algorithms.testPDR(data);
     }
 
     private TestEjercicio3() {

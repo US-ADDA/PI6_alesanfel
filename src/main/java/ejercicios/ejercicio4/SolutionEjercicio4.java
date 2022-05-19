@@ -25,9 +25,9 @@ public class SolutionEjercicio4 {
     private SolutionEjercicio4(List<Integer> ls) {
         elementosPorContenedor = new HashMap<>();
         for (int i = 0; i < ls.size(); i++) {
-            if (ls.get(i) < DataEjercicio4.getNumContenedores()) {
-                Elemento value = DataEjercicio4.getElemento(i);
-                Contenedor key = DataEjercicio4.getContenedor(ls.get(i));
+            if (ls.get(i) < DataEjercicio4.contenedores.size()) {
+                Elemento value = DataEjercicio4.elementos.get(i);
+                Contenedor key = DataEjercicio4.contenedores.get((ls.get(i)));
                 if (elementosPorContenedor.containsKey(key))
                     elementosPorContenedor.get(key).add(value);
                 else

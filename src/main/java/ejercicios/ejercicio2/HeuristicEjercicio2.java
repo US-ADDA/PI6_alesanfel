@@ -14,7 +14,7 @@ public class HeuristicEjercicio2 {
      * @return la valoración total menos los candidatos ya analizados.
      */
     public static Double heuristic(VertexEjercicio2 source, Predicate<VertexEjercicio2> goal, VertexEjercicio2 target) {
-        return IntStream.range(source.indice(), DataEjercicio2.getNumCandidatos())
+        return IntStream.range(source.id(), DataEjercicio2.getNumCandidatos())
                 .map(DataEjercicio2::getValoracion)
                 .sum() * 1.0;
     }
